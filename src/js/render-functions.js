@@ -74,8 +74,8 @@ export function renderError() {
 export function toggleLoader(loading) {
   const loader = document.querySelector('.loader');
   if (loading) {
-    loader.classList.remove('hidden');
+    loader.classList.remove('visually-hidden');
   } else {
-    loader.classList.add('hidden');
+    loader.classList.add('visually-hidden');
   }
 }
