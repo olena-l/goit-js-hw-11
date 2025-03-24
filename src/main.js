@@ -23,29 +23,27 @@ form.addEventListener('submit', event => {
       maxWidth: '432',
       messageSize: '16',
       position: 'topRight',
-      message: `Input field shold not be empty.`,
+      message: `Input field should not be empty.`,
     });
     return;
   }
 
   toggleLoader(true);
 
-  setTimeout(() => {
-    fetchData(search)
-      .then(images => {
-        if (images.length === 0) {
-          renderError();
-        } else {
-          formGallery(images, gallery);
-        }
-      })
-      .catch(error => {
-        console.log(error);
+  fetchData(search)
+    .then(images => {
+      if (images.length === 0) {
         renderError();
-      })
-      .finally(() => {
-        toggleLoader(false);
-        form.reset();
-      });
-  }, 3000);
+      } else {
+        formGallery(images, gallery);
+      }
+    })
+    .catch(error => {
+      console.log(error);
+      renderError();
+    })
+    .finally(() => {
+      toggleLoader(false);
+      form.reset();
+    });
 });

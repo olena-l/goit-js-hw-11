@@ -3,6 +3,8 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
+const lightbox = new SimpleLightbox('.gallery a');
+
 export function clearGallery(gallery) {
   gallery.innerHTML = '';
 }
@@ -18,7 +20,7 @@ export function formGallery(images, gallery) {
       maxWidth: '432',
       messageSize: '16',
       position: 'topRight',
-      message: `Sorry, there are no images matching your search query. Please, try again!`,
+      message: `Sorry, there are no images matching your search query. Please try again!`,
     });
     return;
   }
@@ -54,8 +56,6 @@ export function formGallery(images, gallery) {
   // Insert markup
   gallery.insertAdjacentHTML('beforeend', galleryMarkup);
 
-  // Initialize SimpleLightbox
-  let lightbox = new SimpleLightbox('.gallery a');
   lightbox.refresh();
 }
 
