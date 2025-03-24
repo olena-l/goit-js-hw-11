@@ -3,10 +3,11 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-export function formGallery(images, gallery) {
-  // Clear gallery
+export function clearGallery(gallery) {
   gallery.innerHTML = '';
+}
 
+export function formGallery(images, gallery) {
   // Error if no images found
   if (images.length === 0) {
     iziToast.error({
@@ -67,7 +68,7 @@ export function renderError() {
     maxWidth: '432',
     messageSize: '16',
     position: 'topRight',
-    message: `Sorry, there are no images matching your search query. Please, try again!`,
+    message: `Sorry, there are no images matching your search query. Please try again!`,
   });
 }
 

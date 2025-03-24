@@ -1,6 +1,7 @@
 import { fetchData } from './js/pixabay-api.js';
 
 import {
+  clearGallery,
   formGallery,
   renderError,
   toggleLoader,
@@ -11,8 +12,22 @@ const gallery = document.querySelector('.gallery');
 
 form.addEventListener('submit', event => {
   event.preventDefault();
-  const search = event.target['search-text'].value;
-  gallery.innerHTML = '';
+  clearGallery(gallery);
+  const search = event.target['search-text'].value.trim();
+  if (!search) {
+    iziToast.error({
+      backgroundColor: '#EF4040',
+      messageColor: '#FAFAFB',
+      theme: 'dark',
+      progressBarColor: '#B51B1B',
+      maxWidth: '432',
+      messageSize: '16',
+      position: 'topRight',
+      message: `Input field shold not be empty.`,
+    });
+    return;
+  }
+
   toggleLoader(true);
 
   setTimeout(() => {
@@ -32,5 +47,5 @@ form.addEventListener('submit', event => {
         toggleLoader(false);
         form.reset();
       });
-  }, 100);
+  }, 3000);
 });
